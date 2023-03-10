@@ -12,11 +12,14 @@ interface Inputs {
 
 function parseTagAndVersion(): [string, string] {
   const tagInput = getInput("tag");
-  if (tagInput) {
+  const versionInput = getInput("version");
+  if (tagInput && versionInput) {
+    return [tagInput, versionInput];
+  }
+  else if (tagInput) {
     const version = tagInput.startsWith("v") ? tagInput.substring(1) : tagInput;
     return [tagInput, version];
   } else {
-    const versionInput = getInput("version");
 
     if (!versionInput) {
       throw new Error("Neither version nor tag specified");

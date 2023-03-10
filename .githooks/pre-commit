@@ -6,6 +6,8 @@
 # This script can yield false positives in cases where you only make stylistic changes to the TypeScript code that don't result in changes to the compiled JavaScript code.
 # It is your responsibility as a developer to then commit the changes with `git commit --no-verify` and simply skip this commit hook.
 
+export NODE_OPTIONS=--openssl-legacy-provider
+npm run build
 TS_FILES=$(git diff --staged --name-only | grep -c '.ts')
 DIST_MODIFIED=$(git diff --staged --name-only | grep -c dist/index.js)
 
